@@ -1,0 +1,20 @@
+﻿@model OAuthDemo.IDP.ViewModels.LoginInputModel
+    <form class="flexEle loginFormWrap" asp-route="Login">
+        <div class="form-group emailF">
+            <label asp-for="Username">User Name</label>
+            <input class='form-control' type="text" placeholder='pro@grt.org' asp-for="Username" autofocus autocomplete="off" />
+            <!--rob.martin@markelcorp.com-->
+        </div>
+        <div class="form-group pwdF">
+            <label asp-for="Password">Password</label>
+            <input class='form-control' type="password" placeholder="************" asp-for="Password" autocomplete="off" />
+        </div>
+        <div class="form-group linkResetPwWrap">
+            <div class="btnWrap">
+                <a class="link linkResetPw" href="ResetPassword">Reset Password?</a>
+                <button class="btn btnLogin" name="button" value="login">
+                    <span>Login</span>
+                </button>
+            </div>
+        </div>
+    </form>
