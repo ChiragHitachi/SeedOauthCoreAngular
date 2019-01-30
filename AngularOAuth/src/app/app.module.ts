@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -11,14 +14,17 @@ import { CommonService } from './shared/common.service';
 import { SignalRService } from './shared/signalr.service';
 import { RouteGuard } from './shared/route.guard';
 
-export const APP_ROUTING: ModuleWithProviders = RouterModule.forRoot([
-  {
-      path: '',
+export const appRoutes: Routes = [
+    {
+      path: 'home',
       component: HomeComponent
   },
-  { path: 'signin-oidc', component: SigninComponent }
+  {
+    path: 'signin-oidc',
+    component: SigninComponent
+  }
 
-]);
+];
 
 @NgModule({
   declarations: [
@@ -29,9 +35,15 @@ export const APP_ROUTING: ModuleWithProviders = RouterModule.forRoot([
   ],
   imports: [
     BrowserModule,
-    APP_ROUTING
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(appRoutes),
+
   ],
   providers: [SignInService, CommonService, SignalRService, RouteGuard],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
